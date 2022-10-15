@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: pg-db-deployment
+  namespace: fl-pg-ns
+  labels:
+    app: pg-db
+spec:
+  selector:
+    matchLabels:
+      app: pg-db
+      version: v01
+  replicas: 1
+
+  template:
+    metadata:
+      labels:
+        app: pg-db
+        version: v01
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15.0
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: Qwer1234
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: "nfs-volume"
+      volumes:
+        - name: nfs-volume
+          nfs:
+            # URL for the NFS server
+            server: 192.168.1.110
+            path: /share/test1

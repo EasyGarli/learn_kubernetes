@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-fl-config
+  namespace: fl-pg-ns
+data:
+  pgadmin_default_pass: 
+    name: 'PGADMIN_DEFAULT_PASSWORD=SuperSecret'
