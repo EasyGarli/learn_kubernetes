@@ -4,10 +4,12 @@ metadata:
   name: pg-service
   namespace: fl-pg-ns
 spec:
+  type: LoadBalancer
   selector:
     app: pg-db
     version: v01
   ports:
     - protocol: TCP
       port: 5432
-      targetPort: 5432
+#      targetPort: 5432
+#      nodePort: 32543
