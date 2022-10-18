@@ -1,0 +1,18 @@
+FROM python:3.10.8
+LABEL version="1.0.0"
+
+RUN apt update &&\
+    mkdir -p /usr/src/app
+
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN pip3 install -r requirements.txt
+
+ENV DB_USERNAME $DB_USERNAME
+ENV AUTHOR=$AUTHOR
+ENV DB_NAME=$DB_NAME
+ENV DB_ADDRESS=$DB_ADDRESS
+ENV DB_PORT=$DB_PORT
+ENV DB_PASSWORD=$DB_PASSWORD
+
+CMD [ "flask", "--app", "app", "run", "--host", "0.0.0.0", "--port", "80"]
