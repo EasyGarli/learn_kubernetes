@@ -1,5 +1,5 @@
 FROM python:3.10.8
-LABEL version="1.0.0"
+LABEL version="1.1.1"
 
 RUN apt update &&\
     mkdir -p /usr/src/app

@@ -2,9 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: andrey-flask-deployment
+  name: web-flask-deployment
+  namespace: fl-pg-ns
   labels:
-    app: andrey-flask
+    app: web-flask
 spec:
   replicas: 2
   selector:
@@ -17,6 +18,19 @@ spec:
     spec:
       containers:
       - name: flask
-        image: achskv/flask_test:latest
+        image: achskv/flask_test:1.1.1
         ports:
-        - containerPort: 5000
+        - containerPort: 80
+        env:
+          - name: AUTHOR
+            value: "Andrey"
+          - name: DB_USERNAME
+            value: "postgres"
+          - name: DB_NAME
+            value: "test_db1"
+          - name: DB_ADDRESS
+            value: "pg-service"
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_PASSWORD
+            value: "Qwer1234"

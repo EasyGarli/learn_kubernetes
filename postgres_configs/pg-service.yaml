@@ -4,7 +4,6 @@ metadata:
   name: pg-service
   namespace: fl-pg-ns
 spec:
-  type: LoadBalancer
   selector:
     app: pg-db
     version: v01
