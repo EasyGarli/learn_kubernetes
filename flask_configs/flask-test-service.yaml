@@ -5,7 +5,7 @@ metadata:
   name: flask-service
   namespace: fl-pg-ns
 spec:
-  type: LoadBalancer
+#  type: LoadBalancer
   selector:
     app: flask
   ports:
