@@ -22,15 +22,17 @@ spec:
         ports:
         - containerPort: 80
         env:
-          - name: AUTHOR
-            value: "Andrey"
-          - name: DB_USERNAME
-            value: "postgres"
-          - name: DB_NAME
-            value: "test_db1"
-          - name: DB_ADDRESS
-            value: "pg-service"
-          - name: DB_PORT
-            value: "5432"
-          - name: DB_PASSWORD
-            value: "Qwer1234"
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DB_PASSWORD
+        envFrom:
+        - configMapRef:
+            name: web-fl-config
+        
